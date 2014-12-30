@@ -10,13 +10,15 @@ public class Pos {
         ArrayList<Item> items = shoppingChart.getItems();
         ArrayList<ShoppingListItem> shoplist = new ArrayList<ShoppingListItem>();
         double total=0;
+        double economy=0;
 
         int i,j;
         for (i = 0; i <items.size() ; i++) {
             if(shoplist.size()==0){
                 ShoppingListItem listItem = new ShoppingListItem(items.get(i));
                 shoplist.add(listItem);
-                total += items.get(i).getPrice();
+                total += items.get(i).getPrice()*items.get(i).getDiscount();
+                economy += items.get(i).getPrice()*(1-items.get(i).getDiscount());
                 continue;
             }
 
@@ -30,13 +32,15 @@ public class Pos {
 
             if (shoplist.get(j).getBarCode().equals(items.get(i).getBarCode())){
                 shoplist.get(j).setAmount(shoplist.get(j).getAmount()+1);
-                shoplist.get(j).setSubTotal(shoplist.get(j).getAmount()*shoplist.get(j).getPrice());
+                shoplist.get(j).setSubTotal(shoplist.get(j).getAmount()*shoplist.get(j).getPrice()
+                        *shoplist.get(j).getDiscount());
             }else{
                 ShoppingListItem listItem = new ShoppingListItem(items.get(i));
                 shoplist.add(listItem);
             }
 
-            total += items.get(i).getPrice();
+            total += items.get(i).getPrice()*items.get(i).getDiscount();
+            economy += items.get(i).getPrice()*(1-items.get(i).getDiscount());
         }
         items = null;
 
@@ -54,6 +58,7 @@ public class Pos {
         stringBuilder
                 .append("----------------------\n")
                 .append("总计：").append(String.format("%.2f", total)).append("(元)").append("\n")
+                .append("节省：").append(String.format("%.2f", economy)).append("(元)").append("\n")
                 .append("**********************\n");
 //        stringBuilder
 //                .append("***商店购物清单***\n")

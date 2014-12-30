@@ -11,8 +11,9 @@ public class ShoppingListItem extends Item{
         this.name = item.name;
         this.unit = item.unit;
         this.price = item.price;
+        this.discount = item.discount;
         this.amount = 1;
-        this.subTotal = item.price;
+        this.subTotal = item.price*discount;
     }
 
     public int getAmount() {

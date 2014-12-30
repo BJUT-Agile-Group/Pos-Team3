@@ -29,12 +29,12 @@ public class Run {
             shoppingChart.add(cokeCola);
         }
         if(x==2) {
-            Item cokeCola = new Item("ITEM000001", "雪碧", "瓶", 3.00);
-            shoppingChart.add(cokeCola);
+            Item sprite = new Item("ITEM000001", "雪碧", "瓶", 3.00);
+            shoppingChart.add(sprite);
         }
         if(x==3) {
-            Item cokeCola = new Item("ITEM000004", "电池", "个", 2.00);
-            shoppingChart.add(cokeCola);
+            Item battery = new Item("ITEM000004", "电池", "个", 2.00,0.8);
+            shoppingChart.add(battery);
         }
             System.out.println("\n \n \n");
             run.goodsList();
@@ -51,11 +51,11 @@ public class Run {
         input.close();
     }
     public void goodsList(){
-        System.out.println("================================");
+        System.out.println("=============================================");
         System.out.println("1.ITEM000000 可口可乐  3.00元/瓶");
         System.out.println("2.ITEM000001 雪碧      3.00元/瓶");
-        System.out.println("3.ITEM000004 电池      2.00元/个");
-        System.out.println("================================");
+        System.out.println("3.ITEM000004 电池      2.00元/个  折扣:0.8");
+        System.out.println("=============================================");
         System.out.println("4.打印账单");
     }
 }

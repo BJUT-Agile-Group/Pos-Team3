@@ -15,11 +15,14 @@ public class Run {
         int x;
         Scanner input=new Scanner(System.in);
         Run run=new Run();
+        
         Pos pos = new Pos();
         ShoppingChart shoppingChart = new ShoppingChart();
-        run.menuList();
-        System.out.println("输入你的选择：");
+        run.goodsList();
+        
+        System.out.print("输入你的选择：");
         x=input.nextInt();
+        
         while(1<=x&&x<=3){
         if(x==1) {
             Item cokeCola = new Item("ITEM000000", "可口可乐", "瓶", 3.00);
@@ -34,7 +37,7 @@ public class Run {
             shoppingChart.add(cokeCola);
         }
             System.out.println("\n \n \n");
-            run.menuList();
+            run.goodsList();
             System.out.println("购物车中已有" + shoppingChart.getItems().size()+"件商品");
             System.out.print("输入你的选择：");
             x=input.nextInt();
@@ -44,11 +47,15 @@ public class Run {
             String actualShoppingList = pos.getShoppingList(shoppingChart);
             System.out.println(actualShoppingList);
         }
+        
+        input.close();
     }
-    public void menuList(){
-        System.out.println("1.ITEM000000 可口可乐  瓶 3.00");
-        System.out.println("2.ITEM000001 雪碧      瓶 3.00");
-        System.out.println("3.ITEM000004 电池      个 2.00");
+    public void goodsList(){
+        System.out.println("================================");
+        System.out.println("1.ITEM000000 可口可乐  3.00元/瓶");
+        System.out.println("2.ITEM000001 雪碧      3.00元/瓶");
+        System.out.println("3.ITEM000004 电池      2.00元/个");
+        System.out.println("================================");
         System.out.println("4.打印账单");
     }
 }

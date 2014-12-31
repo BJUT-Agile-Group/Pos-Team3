@@ -101,5 +101,6 @@ public class PosTest {
                         + "节省：0.40(元)\n"
                         + "**********************\n";
         assertThat(actualShoppingList, is(expectedShoppingList));
+
     }
 }

@@ -3,59 +3,64 @@ package run;
 import domains.Item;
 import domains.Pos;
 import domains.ShoppingChart;
-
+import org.dom4j.Document;
+import org.dom4j.DocumentException;
+import org.dom4j.Element;
+import org.dom4j.io.SAXReader;
 import java.io.IOException;
 import java.util.Scanner;
-
+import java.util.Iterator;
 /**
  * Created by Hugh on 2014/12/29 0029.
  */
 public class Run {
-    public static void main(String[] args)throws IOException{
-        int x;
-        Scanner input=new Scanner(System.in);
-        Run run=new Run();
-        
-        Pos pos = new Pos();
-        ShoppingChart shoppingChart = new ShoppingChart();
-        run.goodsList();
-        
-        System.out.print("输入你的选择：");
-        x=input.nextInt();
-        
-        while(1<=x&&x<=3){
-        if(x==1) {
-            Item cokeCola = new Item("ITEM000000", "可口可乐", "瓶", 3.00);
-            shoppingChart.add(cokeCola);
-        }
-        if(x==2) {
-            Item sprite = new Item("ITEM000001", "雪碧", "瓶", 3.00);
-            shoppingChart.add(sprite);
-        }
-        if(x==3) {
-            Item battery = new Item("ITEM000004", "电池", "个", 2.00,0.8);
-            shoppingChart.add(battery);
-        }
-            System.out.println("\n \n \n");
-            run.goodsList();
-            System.out.println("购物车中已有" + shoppingChart.getItems().size()+"件商品");
-            System.out.print("输入你的选择：");
-            x=input.nextInt();
-        }
-        if(x==4){
-            System.out.println("\n \n \n");
-            String actualShoppingList = pos.getShoppingList(shoppingChart);
-            System.out.println(actualShoppingList);
-        }
-        
-        input.close();
+    public static void main(String[] args) throws Exception{
+        Run run = new Run();
+        String actualShoppingList;
+        actualShoppingList= run.SaxIndex();
+        System.out.println(actualShoppingList);
     }
-    public void goodsList(){
-        System.out.println("=============================================");
-        System.out.println("1.ITEM000000 可口可乐  3.00元/瓶");
-        System.out.println("2.ITEM000001 雪碧      3.00元/瓶");
-        System.out.println("3.ITEM000004 电池      2.00元/个  折扣:0.8");
-        System.out.println("=============================================");
-        System.out.println("4.打印账单");
+    public String SaxIndex() throws DocumentException{
+        Document doc1;
+        Pos pos = new Pos();
+        SAXReader sax1 = new SAXReader();
+        ShoppingChart shoppingChart = new ShoppingChart();
+        doc1 = sax1.read("Index.xml");
+        Element root = doc1.getRootElement();
+        Iterator<Element> it = root.elementIterator();
+        while (it.hasNext()) {
+            Element el=it.next();
+            String barcode=el.getText();
+            shoppingChart.add(SaxListing(barcode));
+
+        }
+        String actualShoppingList = pos.getShoppingList(shoppingChart);
+        return actualShoppingList;
+    }
+
+    public Item SaxListing(String barcode) throws DocumentException{
+        Item item=null;
+        SAXReader sax2 = new SAXReader();
+        Document doc2;
+        doc2 = sax2.read("Listing.xml");
+        Element root = doc2.getRootElement();
+        Iterator<Element> it = root.elementIterator();
+        while (it.hasNext()) {
+            Element el = it.next();
+            if(el.attributeValue("type").equals(barcode)&&!barcode.equals("ITEM000004")){
+                String name=el.elementText("name");
+                String unit=el.elementText("unit");
+               double price=Double.parseDouble(el.elementText("price"));
+              item=new Item(barcode,name,unit,price);
+            }
+            if(el.attributeValue("type").equals(barcode)&&barcode.equals("ITEM000004")){
+                String name=el.elementText("name");
+                String unit=el.elementText("unit");
+                double price=Double.parseDouble(el.elementText("price"));
+                double discount=Double.parseDouble(el.elementText("discount"));
+                 item=new Item(barcode,name,unit,price,discount);
+            }
+        }
+        return item;
     }
 }

@@ -57,18 +57,13 @@ public class Pos {
         }
         stringBuilder
                 .append("----------------------\n")
-                .append("总计：").append(String.format("%.2f", total)).append("(元)").append("\n")
-                .append("节省：").append(String.format("%.2f", economy)).append("(元)").append("\n")
-                .append("**********************\n");
-//        stringBuilder
-//                .append("***商店购物清单***\n")
-//                .append("名称：").append(nameOfItem).append("，")
-//                .append("数量：").append(amountOfItem).append(unitOfItem).append("，")
-//                .append("单价：").append(String.format("%.2f", priceOfItem)).append("(元)").append("，")
-//                .append("小计：").append(String.format("%.2f", subTotal)).append("(元)").append("\n")
-//                .append("----------------------\n")
-//                .append("总计：").append(String.format("%.2f", total)).append("(元)").append("\n")
-//                .append("**********************\n");
+                .append("总计：").append(String.format("%.2f", total)).append("(元)").append("\n");
+        if(economy!=0) {
+            stringBuilder.append("节省：").append(String.format("%.2f", economy)).append("(元)").append("\n");
+        }
+        stringBuilder.append("**********************\n");
+
+
         return stringBuilder.toString();
     }
 }

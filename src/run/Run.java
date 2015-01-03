@@ -32,7 +32,6 @@ public class Run {
             Element el=it.next();
             String barcode=el.getText();
             shoppingChart.add(SaxListing(barcode));
-
         }
         String actualShoppingList = pos.getShoppingList(shoppingChart);
         return actualShoppingList;

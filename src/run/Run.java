@@ -21,7 +21,9 @@ public class Run {
         System.out.println(actualShoppingList);
     }
     public String SaxIndex() throws DocumentException{
+        Item item=null;
         Document doc1;
+        String absent="需要寻找的商品不存在！";
         Pos pos = new Pos();
         SAXReader sax1 = new SAXReader();
         ShoppingChart shoppingChart = new ShoppingChart();
@@ -31,7 +33,13 @@ public class Run {
         while (it.hasNext()) {
             Element el=it.next();
             String barcode=el.getText();
-            shoppingChart.add(SaxListing(barcode));
+            item=SaxListing(barcode);
+            if(item==null){
+                return absent;
+            }else {
+                shoppingChart.add(item);
+            }
+
         }
         String actualShoppingList = pos.getShoppingList(shoppingChart);
         return actualShoppingList;
@@ -46,19 +54,28 @@ public class Run {
         Iterator<Element> it = root.elementIterator();
         while (it.hasNext()) {
             Element el = it.next();
-            if(el.attributeValue("type").equals(barcode)&&!barcode.equals("ITEM000004")){
+            if(el.attributeValue("type").equals(barcode)&&(el.elements().size()==3)){
                 String name=el.elementText("name");
                 String unit=el.elementText("unit");
                double price=Double.parseDouble(el.elementText("price"));
               item=new Item(barcode,name,unit,price);
             }
-            if(el.attributeValue("type").equals(barcode)&&barcode.equals("ITEM000004")){
+            if(el.attributeValue("type").equals(barcode)&&(el.elements().size()==4)){
                 String name=el.elementText("name");
                 String unit=el.elementText("unit");
                 double price=Double.parseDouble(el.elementText("price"));
                 double discount=Double.parseDouble(el.elementText("discount"));
                  item=new Item(barcode,name,unit,price,discount);
             }
+            if(el.attributeValue("type").equals(barcode)&&(el.elements().size()==5)){
+                String name=el.elementText("name");
+                String unit=el.elementText("unit");
+                double price=Double.parseDouble(el.elementText("price"));
+                double discount=Double.parseDouble(el.elementText("discount"));
+                boolean prom = Boolean.parseBoolean(el.elementText("promotion"));
+                item=new Item(barcode,name,unit,price,discount,prom);
+            }
+
         }
         return item;
     }

@@ -4,12 +4,16 @@
      <name>可口可乐</name>
      <unit>瓶</unit>
      <price>3.00</price>
+     <discount>1</discount>
+     <promotion>true</promotion>
      </barcode>
      
      <barcode type="ITEM000001">
      <name>雪碧</name>
      <unit>瓶</unit>
      <price>3.00</price>
+     <discount>1</discount>
+     <promotion>true</promotion>>
      </barcode>
      
      <barcode type="ITEM000004">

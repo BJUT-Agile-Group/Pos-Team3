@@ -48,6 +48,7 @@ public class Pos {
         StringBuilder youhui = new StringBuilder();
         youhui.append("----------------------\n挥泪赠送商品:\n");
         stringBuilder.append("***商店购物清单***\n");
+        int count =0;
         for (int k = 0; k < shoplist.size(); k++) {
             stringBuilder
                     .append("名称：").append(shoplist.get(k).getName()).append("，")
@@ -56,13 +57,17 @@ public class Pos {
                     .append("(元)").append("，")
                     .append("小计：").append(String.format("%.2f", shoplist.get(k).getSubTotal()))
                     .append("(元)").append("\n");
-            if(shoplist.get(k).getAmount() >= 2&&shoplist.get(k).getDiscount() ==1)
+            if(shoplist.get(k).getAmount() >= 2&&shoplist.get(k).getpro())
             {
                 youhui
                         .append("名称：").append(shoplist.get(k).getName()).append("，")
                         .append("数量：").append("1").append(shoplist.get(k).getUnit()).append("\n");
-
+                count++;
             }
+        }
+        if(count==0)
+        {
+            youhui.delete(0,33);
         }
         stringBuilder.append(youhui);
         stringBuilder

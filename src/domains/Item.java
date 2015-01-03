@@ -9,7 +9,7 @@ public class Item {
     protected String unit;
     protected double price;
     protected double discount;
-
+    protected boolean promotion;
     public Item(){}
 
     public Item(String barCode, String name, String unit, double price) {
@@ -28,6 +28,15 @@ public class Item {
         this.price = price;
         this.discount = discount;
     }
+    public Item(String barCode, String name, String unit, double price,double discount,boolean promotion) {
+
+        this.barCode = barCode;
+        this.name = name;
+        this.unit = unit;
+        this.price = price;
+        this.discount = discount;
+        this.promotion = promotion;
+    }
     public double getDiscount() {
         return discount;
     }
@@ -42,7 +51,10 @@ public class Item {
     public String getUnit() {
         return unit;
     }
-
+    public boolean getpro()
+    {
+        return promotion;
+    }
     public double getPrice() {
         return price;
     }

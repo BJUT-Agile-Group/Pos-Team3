@@ -35,8 +35,8 @@ public class PosTest {
     public void testGetCorrectShoppingListForTwoSameItems() throws Exception {
         // given
         ShoppingChart shoppingChart = new ShoppingChart();
-        shoppingChart.add(new Item("ITEM000000", "可口可乐", "瓶", 3.00));
-        shoppingChart.add(new Item("ITEM000000", "可口可乐", "瓶", 3.00));
+        shoppingChart.add(new Item("ITEM000005", "吹风机", "件", 83.00));
+        shoppingChart.add(new Item("ITEM000005", "吹风机", "件", 83.00));
 
         // when
         Pos pos = new Pos();
@@ -45,9 +45,9 @@ public class PosTest {
         // then
         String expectedShoppingList =
                           "***商店购物清单***\n"
-                        + "名称：可口可乐，数量：2瓶，单价：3.00(元)，小计：6.00(元)\n"
+                        + "名称：吹风机，数量：2件，单价：83.00(元)，小计：166.00(元)\n"
                         + "----------------------\n"
-                        + "总计：6.00(元)\n"
+                        + "总计：166.00(元)\n"
                         + "**********************\n";
         assertThat(actualShoppingList, is(expectedShoppingList));
     }

@@ -23,7 +23,7 @@ public class Run {
     public String SaxIndex() throws DocumentException{
         Item item=null;
         Document doc1;
-        String absent="需要寻找的商品不存在！";
+        String absent="您寻找的商品不存在！";
         Pos pos = new Pos();
         SAXReader sax1 = new SAXReader();
         ShoppingChart shoppingChart = new ShoppingChart();

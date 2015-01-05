@@ -21,5 +21,6 @@
      <unit>个</unit>
      <price>2.00</price>
      <discount>0.8</discount>
+     <promotion>false</promotion>>
      </barcode>
 </goods>

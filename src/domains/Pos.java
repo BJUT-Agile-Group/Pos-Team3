@@ -3,81 +3,56 @@ package domains;
 import java.util.ArrayList;
 
 /**
- * Created by Administrator on 2014/12/28.
- */
+* Created by Administrator on 2014/12/28.
+*/
 public class Pos {
-    public String getShoppingList(ShoppingChart shoppingChart) {
-        ArrayList<Item> items = shoppingChart.getItems();
-        ArrayList<ShoppingListItem> shoplist = new ArrayList<ShoppingListItem>();
-        double total=0;
-        double economy=0;
+    public Pos() {}
 
-        int i,j;
-        for (i = 0; i <items.size() ; i++) {
-            if(shoplist.size()==0){
-                ShoppingListItem listItem = new ShoppingListItem(items.get(i));
-                shoplist.add(listItem);
-                total += items.get(i).getPrice()*items.get(i).getDiscount();
-                economy += items.get(i).getPrice()*(1-items.get(i).getDiscount());
-                continue;
-            }
+    public String getShoppingList(ShoppingListChart shoppingListChart) {
+        ArrayList<ListItem> listItems = shoppingListChart.getListItems();
+        double totalMoney = 0;
+        double totalSaveMoney = 0;
 
-            for (j = 0; j < shoplist.size(); j++) {
-                if (shoplist.get(j).getBarCode().equals(items.get(i).getBarCode())){
-                    j++;
-                    break;
-                }
-            }
-            j--;
-
-            if (shoplist.get(j).getBarCode().equals(items.get(i).getBarCode())){
-                shoplist.get(j).setAmount(shoplist.get(j).getAmount()+1);
-                shoplist.get(j).setSubTotal(shoplist.get(j).getAmount()*shoplist.get(j).getPrice()
-                        *shoplist.get(j).getDiscount());
-            }else{
-                ShoppingListItem listItem = new ShoppingListItem(items.get(i));
-                shoplist.add(listItem);
-            }
-
-            total += items.get(i).getPrice()*items.get(i).getDiscount();
-            economy += items.get(i).getPrice()*(1-items.get(i).getDiscount());
+        for (int i = 0; i < listItems.size(); i++) {
+            totalMoney += listItems.get(i).getSubTotal();
+            totalSaveMoney += listItems.get(i).getSaveMoney();
         }
-        items = null;
 
         StringBuilder stringBuilder = new StringBuilder();
-        StringBuilder youhui = new StringBuilder();
-        youhui.append("----------------------\n挥泪赠送商品:\n");
+
         stringBuilder.append("***商店购物清单***\n");
-        int count =0;
-        for (int k = 0; k < shoplist.size(); k++) {
+
+        for (int i = 0; i < listItems.size(); i++) {
             stringBuilder
-                    .append("名称：").append(shoplist.get(k).getName()).append("，")
-                    .append("数量：").append(shoplist.get(k).getAmount()).append(shoplist.get(k).getUnit()).append("，")
-                    .append("单价：").append(String.format("%.2f", shoplist.get(k).getPrice()))
+                    .append("名称：").append(listItems.get(i).getName()).append("，")
+                    .append("数量：").append(listItems.get(i).getAmount()).append(listItems.get(i).getUnit()).append("，")
+                    .append("单价：").append(String.format("%.2f", listItems.get(i).getPrice()))
                     .append("(元)").append("，")
-                    .append("小计：").append(String.format("%.2f", shoplist.get(k).getSubTotal()))
+                    .append("小计：").append(String.format("%.2f", listItems.get(i).getSubTotal()))
                     .append("(元)").append("\n");
-            if(shoplist.get(k).getAmount() >= 2&&shoplist.get(k).getpro())
-            {
-                youhui
-                        .append("名称：").append(shoplist.get(k).getName()).append("，")
-                        .append("数量：").append("1").append(shoplist.get(k).getUnit()).append("\n");
-                count++;
+        }
+
+        if (shoppingListChart.isPromotion()) {
+            stringBuilder
+                    .append("----------------------\n挥泪赠送商品:\n");
+            for (int i = 0; i < listItems.size(); i++) {
+
+                if (listItems.get(i).canBePromotion()) {
+                    totalSaveMoney+=listItems.get(i).getPrice();
+                    stringBuilder
+                            .append("名称：").append(listItems.get(i).getName()).append("，")
+                            .append("数量：").append("1").append(listItems.get(i).getUnit()).append("\n");
+                }
             }
         }
-        if(count==0)
-        {
-            youhui.delete(0,33);
-        }
-        stringBuilder.append(youhui);
+
         stringBuilder
                 .append("----------------------\n")
-                .append("总计：").append(String.format("%.2f", total)).append("(元)").append("\n");
-        if(economy!=0) {
-            stringBuilder.append("节省：").append(String.format("%.2f", economy)).append("(元)").append("\n");
+                .append("总计：").append(String.format("%.2f", totalMoney)).append("(元)").append("\n");
+        if(totalSaveMoney!=0) {
+            stringBuilder.append("节省：").append(String.format("%.2f", totalSaveMoney)).append("(元)").append("\n");
         }
         stringBuilder.append("**********************\n");
-
 
         return stringBuilder.toString();
     }

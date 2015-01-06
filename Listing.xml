@@ -6,6 +6,7 @@
      <price>3.00</price>
      <discount>1</discount>
      <promotion>true</promotion>
+     <vipdiscount>1</vipdiscount>
      </barcode>
      
      <barcode type="ITEM000001">
@@ -13,7 +14,8 @@
      <unit>瓶</unit>
      <price>3.00</price>
      <discount>1</discount>
-     <promotion>true</promotion>>
+     <promotion>true</promotion>
+     <vipdiscount>1</vipdiscount>
      </barcode>
      
      <barcode type="ITEM000004">
@@ -21,6 +23,7 @@
      <unit>个</unit>
      <price>2.00</price>
      <discount>0.8</discount>
+     <vipdiscount>0.1</vipdiscount>
      <promotion>false</promotion>>
      </barcode>
 </goods>

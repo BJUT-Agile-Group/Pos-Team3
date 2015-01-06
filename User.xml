@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<users>
+    <usercode num="USER001">
+        <isvip>true</isvip>
+    </usercode>
+    <usercode num="USER002">
+        <isvip>false</isvip>
+    </usercode>
+    <usercode num="USER003">
+        <isvip>true</isvip>
+    </usercode>
+
+</users>

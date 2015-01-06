@@ -35,19 +35,35 @@ public class Run {
         document = saxReader.read("index.xml");
         Element root = document.getRootElement();
         Iterator<Element> iterator = root.elementIterator();
+        boolean vip = false;
+//        int id = Integer.parseInt(iterator.next().getText());
 
         while (iterator.hasNext()) {
             Element element=iterator.next();
             String barCode=element.getText();
-            Item item=saxListing(barCode);
-            if(item.isConmmanded())
+            if(barCode.contains("USER"))
             {
-                System.out.println("Discount and promotion can't exist both, barCode: "+item.getBarCode());
+                String tem = saxUsers(barCode);
+                if(tem.equals("Notfound"))
+                {
+                    System.out.println(tem);
+                    System.exit(0);
+                }
+                else
+                {
+                    vip = Boolean.parseBoolean(tem);
+                }
             }
-            if(!item.isNull()){
-                shoppingChart.add(item);
-            }else {
-                System.out.println("Read error,item barcode: " + barCode);
+            else {
+                Item item = saxListing(barCode,vip);
+                if (item.isConmmanded()) {
+                    System.out.println("Discount and promotion can't exist both, barCode: " + item.getBarCode());
+                }
+                if (!item.isNull()) {
+                    shoppingChart.add(item);
+                } else {
+                    System.out.println("Read error,item barcode: " + barCode);
+                }
             }
         }
         return  shoppingChart;
@@ -58,7 +74,7 @@ public class Run {
     参数：String bacCord 产品的编码
     返回值：Item  若成功，则返回该产品属性，否则，返回空Item
      */
-    public Item saxListing(String bacCode) throws DocumentException{
+    public Item saxListing(String bacCode,Boolean vip) throws DocumentException{
         SAXReader saxReader = new SAXReader();
         Document document;
         document = saxReader.read("listing.xml");
@@ -73,10 +89,30 @@ public class Run {
                 String unit=element.elementText("unit");
                 double price=Double.parseDouble(element.elementText("price"));
                 double discount=Double.parseDouble(element.elementText("discount"));
+                if(vip)
+                {
+                    discount = discount*Double.parseDouble(element.elementText("vipdiscount"));
+                }
                 boolean promotion = Boolean.parseBoolean(element.elementText("promotion"));
                 return new Item(bacCode,name,unit,price,discount,promotion);
             }
         }
         return new Item();
+    }
+    public String saxUsers(String bacCode) throws DocumentException{
+        SAXReader saxReader = new SAXReader();
+        Document document;
+        document = saxReader.read("User.xml");
+        Element root = document.getRootElement();
+        Iterator<Element> iterator = root.elementIterator();
+
+        while (iterator.hasNext()) {
+            Element element = iterator.next();
+
+            if(element.attributeValue("num").equals(bacCode)){
+                return element.elementText("isvip");
+            }
+        }
+        return "Notfound";
     }
 }

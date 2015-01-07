@@ -1,29 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <goods>
      <barcode type="ITEM000000">
-     <name>可口可乐</name>
-     <unit>瓶</unit>
-     <price>3.00</price>
-     <discount>1</discount>
-     <promotion>true</promotion>
-     <vipdiscount>1</vipdiscount>
+          <name>可口可乐</name>
+          <unit>瓶</unit>
+          <price>3.00</price>
+          <discount>1</discount>
+          <promotion>false</promotion>
+          <vipDiscount>0.9</vipDiscount>
      </barcode>
      
      <barcode type="ITEM000001">
-     <name>雪碧</name>
-     <unit>瓶</unit>
-     <price>3.00</price>
-     <discount>1</discount>
-     <promotion>true</promotion>
-     <vipdiscount>1</vipdiscount>
+          <name>雪碧</name>
+          <unit>瓶</unit>
+          <price>3.00</price>
+          <discount>0.8</discount>
+          <promotion>false</promotion>>
+          <vipDiscount>0.95</vipDiscount>
      </barcode>
      
-     <barcode type="ITEM000004">
-     <name>电池</name>
-     <unit>个</unit>
-     <price>2.00</price>
-     <discount>0.8</discount>
-     <vipdiscount>0.1</vipdiscount>
-     <promotion>false</promotion>>
+     <barcode type="ITEM000002">
+          <name>电池</name>
+          <unit>个</unit>
+          <price>5.00</price>
+          <discount>1</discount>
+          <promotion>true</promotion>>
+          <vipDiscount>1</vipDiscount>
      </barcode>
+
 </goods>

@@ -16,6 +16,7 @@ public class ListItem extends Item{
         this.price = item.price;
         this.discount = item.discount;
         this.promotion = item.promotion;
+        this.vipDiscount=item.vipDiscount;
         this.amount = 1;
         this.subTotal = item.price*discount;
         this.saveMoney =item.price*(1-discount);

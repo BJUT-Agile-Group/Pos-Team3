@@ -10,22 +10,19 @@ public class Item {
     protected double price;
     protected double discount;
     protected boolean promotion;
+    protected double vipDiscount;
     public Item(){}
 
-    public boolean isNull()
-    {
-        return this.barCode==null||barCode.equals("");
-    }
-
     public Item(String barCode, String name, String unit, double price) {
-
         this.barCode = barCode;
         this.name = name;
         this.unit = unit;
         this.price = price;
         this.discount = 1;
         this.promotion=false;
+        this.vipDiscount=1;
     }
+
     public Item(String barCode, String name, String unit, double price,double discount) {
 
         this.barCode = barCode;
@@ -34,6 +31,7 @@ public class Item {
         this.price = price;
         this.discount = discount;
         this.promotion=false;
+        this.vipDiscount=1;
     }
 
     public Item(String barCode, String name, String unit, double price,boolean promotion) {
@@ -44,6 +42,7 @@ public class Item {
         this.price = price;
         this.discount=1;
         this.promotion=false;
+        this.vipDiscount=1;
     }
     public Item(String barCode, String name, String unit, double price,double discount,boolean promotion) {
 
@@ -53,11 +52,39 @@ public class Item {
         this.price = price;
         this.discount = discount;
         this.promotion = promotion;
+        this.vipDiscount=1;
     }
 
-    public boolean isConmmanded()
+    public Item(String barCode, String name, String unit, double price, double discount, boolean promotion, double vipDiscount) {
+        this.barCode = barCode;
+        this.name = name;
+        this.unit = unit;
+        this.price = price;
+        this.discount = discount;
+        this.promotion = promotion;
+        this.vipDiscount = vipDiscount;
+    }
+
+    public boolean isNull()
     {
-        return (discount<1&&promotion==true);
+        return this.barCode==null||barCode.equals("");
+    }
+
+    public boolean isRecommended()
+    {
+        if(discount<1&&promotion==true)
+        {
+            return false;
+        }
+        if(vipDiscount<1&&promotion==true)
+        {
+            return false;
+        }
+        if(price<0)
+        {
+            return false;
+        }
+        return true;
     }
 
     public String getBarCode() {
@@ -106,5 +133,13 @@ public class Item {
 
     public void setPromotion(boolean promotion) {
         this.promotion = promotion;
+    }
+
+    public double getVipDiscount() {
+        return vipDiscount;
+    }
+
+    public void setVipDiscount(double vipDiscount) {
+        this.vipDiscount = vipDiscount;
     }
 }

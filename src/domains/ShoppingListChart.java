@@ -35,10 +35,10 @@ public class ShoppingListChart {
             }
         }
 
-        charPromotion();
+        chargePromotion();
     }
 
-    public void charPromotion()
+    public void chargePromotion()
     {
         for(int i=0;i<listItems.size();i++)
         {

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<users> 
+  <name type="USER001"> 
+    <isVIP>false</isVIP>  
+    <integral>22</integral> 
+  </name>  
+  <name type="USER002"> 
+    <isVIP>true</isVIP>  
+    <integral>291</integral> 
+  </name>  
+  <name type="USER003"> 
+    <isVIP>false</isVIP>  
+    <integral>30</integral> 
+  </name>  
+  <name type="USER004"> 
+    <isVIP>false</isVIP>  
+    <integral>40</integral> 
+  </name> 
+</users>

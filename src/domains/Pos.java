@@ -65,10 +65,15 @@ public class Pos {
                 stringBuilder
                     .append("数量：").append(listItems.get(i).getAmount()+1).append(listItems.get(i).getUnit()).append("，");
             }
-            else {
+            else
+            {
                 stringBuilder
-                    .append("单价：").append(String.format("%.2f", listItems.get(i).getPrice()));
+                        .append("数量：").append(listItems.get(i).getAmount() ).append(listItems.get(i).getUnit()).append("，");
             }
+
+            stringBuilder
+                    .append("单价：").append(String.format("%.2f", listItems.get(i).getPrice()));
+
             stringBuilder
                     .append("(元)").append("，")
                     .append("小计：").append(String.format("%.2f", listItems.get(i).getSubTotal()))

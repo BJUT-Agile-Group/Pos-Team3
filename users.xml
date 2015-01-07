@@ -3,7 +3,7 @@
 <users> 
   <name type="USER001"> 
     <isVIP>false</isVIP>  
-    <integral>22</integral> 
+    <integral>28</integral> 
   </name>  
   <name type="USER002"> 
     <isVIP>true</isVIP>  

@@ -39,11 +39,11 @@ public class Pos {
         }
         else if(usersManager.getIntegral(usersManager.getUserName())>200&&usersManager.getIntegral(usersManager.getUserName())<=500)
         {
-            usersManager.increaseIntegral(usersManager.getUserName(),(int)(3*totalMoney/5));
+            usersManager.increaseIntegral(usersManager.getUserName(),(3*(int)(totalMoney/5)));
         }
         else if(usersManager.getIntegral(usersManager.getUserName())>500)
         {
-            usersManager.increaseIntegral(usersManager.getUserName(),(int)(5*totalMoney/5));
+            usersManager.increaseIntegral(usersManager.getUserName(),(5*(int)(totalMoney/5)));
         }
 
         StringBuilder stringBuilder = new StringBuilder();

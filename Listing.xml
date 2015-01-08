@@ -21,7 +21,7 @@
      <barcode type="ITEM000002">
           <name>电池</name>
           <unit>个</unit>
-          <price>5.00</price>
+          <price>1.00</price>
           <discount>1</discount>
           <promotion>true</promotion>>
           <vipDiscount>1</vipDiscount>

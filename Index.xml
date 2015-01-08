@@ -2,18 +2,18 @@
 
 <items>
 
-<user>USER002</user>
+<user>USER003</user>
 
 <goods type="goods">
     <barcode>ITEM000000</barcode>
+    <!--<barcode>ITEM000000</barcode>-->
+    <!--<barcode>ITEM000000</barcode>-->
     <barcode>ITEM000000</barcode>
-    <barcode>ITEM000000</barcode>
-    <barcode>ITEM000000</barcode>
-    <barcode>ITEM000001</barcode>
-    <barcode>ITEM000001</barcode>
+    <!--<barcode>ITEM000001</barcode>-->
+    <!--<barcode>ITEM000001</barcode>-->
+    <!--<barcode>ITEM000002</barcode>-->
     <barcode>ITEM000002</barcode>
-    <barcode>ITEM000002</barcode>
-    <barcode>ITEM000002</barcode>
+    <!--<barcode>ITEM000002</barcode>-->
 </goods>
 
 </items>

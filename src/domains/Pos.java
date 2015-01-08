@@ -34,14 +34,14 @@ public class Pos {
             totalSaveMoney += listItems.get(i).getSaveMoney();
         }
 
-        if(totalMoney>=0&&totalMoney<=200) {
+        if(usersManager.getIntegral(usersManager.getUserName())>=0&&usersManager.getIntegral(usersManager.getUserName())<=200) {
             usersManager.increaseIntegral(usersManager.getUserName(),(int)(totalMoney/5));
         }
-        else if(totalMoney>200&&totalMoney<=500)
+        else if(usersManager.getIntegral(usersManager.getUserName())>200&&usersManager.getIntegral(usersManager.getUserName())<=500)
         {
             usersManager.increaseIntegral(usersManager.getUserName(),(int)(3*totalMoney/5));
         }
-        else if(totalMoney>500)
+        else if(usersManager.getIntegral(usersManager.getUserName())>500)
         {
             usersManager.increaseIntegral(usersManager.getUserName(),(int)(5*totalMoney/5));
         }

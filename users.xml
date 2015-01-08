@@ -3,11 +3,11 @@
 <users> 
   <name type="USER001"> 
     <isVIP>false</isVIP>  
-    <integral>28</integral> 
+    <integral>40</integral> 
   </name>  
   <name type="USER002"> 
     <isVIP>true</isVIP>  
-    <integral>291</integral> 
+    <integral>630</integral> 
   </name>  
   <name type="USER003"> 
     <isVIP>false</isVIP>  
